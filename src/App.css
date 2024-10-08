@@ -6,7 +6,7 @@
   transition: 2000ms;
   position: absolute;
   z-index: -1;
-  right: 0px;
+  left: 0px;
 }
 
 img.capyAppear {
@@ -20,6 +20,6 @@ img.capyAppear {
 
 .makeItAppear:hover .capyAppear {
   transition: 2000ms;
-  transform: rotate(0deg);
-  right: 140px;
+  transform: rotate(20deg);
+  left: 100%;
 }
