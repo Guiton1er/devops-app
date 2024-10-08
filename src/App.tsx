@@ -49,7 +49,9 @@ function App() {
         <button type='submit' className='bg-slate-200' onChange={handleSubmit}>
           Ajouter
         </button>
-        <p>{message}</p>
+        {message && (
+          <div className='text-emerald-500 p-2 text-center mt-2'>{message}</div>
+        )}
       </form>
       <pre>
         <code>
