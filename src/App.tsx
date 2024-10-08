@@ -1,5 +1,13 @@
 import { useState } from 'react'
+import capybara from './assets/capybara.png'
 import './App.css'
+
+type Task = {
+  title: string;
+  date: string;
+}
+
+const TASKS_STORAGE_KEY = "tasks_db";
 
 function App() {
   const [title, setTitle] = useState("");
@@ -17,9 +25,13 @@ function App() {
       setTimeout(() => {
         setMessage(""); 
       }, 3000);
+      return;
     }
 
     // TODO : enregister la tâche dans le local storage 
+    const tasks: Task[] = JSON.parse(localStorage.getItem(TASKS_STORAGE_KEY) || "[]");
+    tasks.push({ title, date });
+    localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
 
     // Réinitialiser les champs
     setTitle("");
@@ -34,23 +46,26 @@ function App() {
 
   return (
     <>
-      <form className='flex flex-col space-y-2 max-w-80 border p-6 shadow-lg mx-auto mt-12 rounded-sm'>
+      <h1 className='text-teal-800 text-center p-2 text-2xl font-mono font-black mt-3'>
+        Todo List
+      </h1>
+      <form className='flex flex-col space-y-2 max-w-80 border p-6 shadow-lg mx-auto mt-2 rounded-md' onSubmit={handleSubmit}>
         <input 
           type="text" 
-          className='border p-2' 
+          className='border p-2 rounded-md' 
           placeholder='Titre de la tâche'
           onChange={(e) => setTitle(e.target.value)}
         />
         <input 
           type="date" 
-          className='border p-2'
+          className='border p-2 rounded-md'
           onChange={(e) => setDate(e.target.value)}
         />
-        <button type='submit' className='bg-slate-200' onChange={handleSubmit}>
+        <button type='submit' className='bg-teal-200 p-2 rounded-md '>
           Ajouter
         </button>
         {message && (
-          <div className='text-emerald-500 p-2 text-center mt-2'>{message}</div>
+          <div id='message' className='text-emerald-500 p-2 text-center mt-2'>{message}</div>
         )}
       </form>
       <pre>
@@ -65,6 +80,7 @@ function App() {
           )}
         </code>
       </pre>
+      <img className='capyAppear' src={capybara}/>
     </>
   )
 }
