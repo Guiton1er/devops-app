@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import capybara from './assets/neocapy.png'
+import capybara from './assets/capybara.png'
 import './App.css'
 
 type Task = {
