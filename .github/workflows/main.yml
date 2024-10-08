@@ -16,7 +16,7 @@
     # Name of the browser to use
     browser: # optional
     # Command that overrides cypress run
-    command: # optional
+    command: npm run dev
     # Command for starting local server in the background
     start: # optional
     # A different start command on Windows
@@ -24,11 +24,11 @@
     # Command to run build step before starting tests
     build: # optional
     # Whether or not to run install
-    install: # optional
+    install: true
     # Custom install command to use
     install-command: # optional
     # Whether or not to run tests
-    runTests: # optional
+    runTests: true
     # Local server URL to wait for
     wait-on: # optional
     # Amount of time to wait for wait-on url to be available
