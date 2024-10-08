@@ -30,7 +30,7 @@ function App() {
 
     // TODO : enregister la tâche dans le local storage 
     const tasks: Task[] = JSON.parse(localStorage.getItem(TASKS_STORAGE_KEY) || "[]");
-    tasks.push({ date, title });
+    tasks.push({ title, date });
     localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
 
     // Réinitialiser les champs
