@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import capybara from './assets/capybara.png'
+import capybara from './assets/neocapy.png'
 import './App.css'
 
 type Task = {
@@ -49,7 +49,7 @@ function App() {
       <h1 className='text-teal-800 text-center p-2 text-2xl font-mono font-black mt-3'>
         Todo List
       </h1>
-      <form className='flex flex-col space-y-2 max-w-80 border p-6 shadow-lg mx-auto mt-2 rounded-md makeItAppear' onSubmit={handleSubmit}>
+      <form className='flex flex-col space-y-2 max-w-80 border p-6 shadow-lg mx-auto mt-2 rounded-md makeItAppear bg-white' onSubmit={handleSubmit}>
         <input 
           type="text" 
           className='border p-2 rounded-md' 
