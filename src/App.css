@@ -3,7 +3,23 @@
 @tailwind utilities;
 
 .capyAppear {
+  transition: 2000ms;
+  position: absolute;
+  z-index: 1;
+  left: -400%;
+}
+
+img.capyAppear {
+  max-width: 150px;
+}
+
+.makeItAppear {
   position: relative;
-  left: -1000px;
-  height: 10%;
+  z-index: 2;
+}
+
+.makeItAppear:hover .capyAppear {
+  transition: 2000ms;
+  transform: rotate(20deg);
+  left: -300%;
 }

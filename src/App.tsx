@@ -30,7 +30,7 @@ function App() {
 
     // TODO : enregister la tâche dans le local storage 
     const tasks: Task[] = JSON.parse(localStorage.getItem(TASKS_STORAGE_KEY) || "[]");
-    tasks.push({ title, date });
+    tasks.push({ date, title });
     localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
 
     // Réinitialiser les champs
@@ -49,7 +49,7 @@ function App() {
       <h1 className='text-teal-800 text-center p-2 text-2xl font-mono font-black mt-3'>
         Todo List
       </h1>
-      <form className='flex flex-col space-y-2 max-w-80 border p-6 shadow-lg mx-auto mt-2 rounded-md' onSubmit={handleSubmit}>
+      <form className='flex flex-col space-y-2 max-w-80 border p-6 shadow-lg mx-auto mt-2 rounded-md makeItAppear' onSubmit={handleSubmit}>
         <input 
           type="text" 
           className='border p-2 rounded-md' 
@@ -67,7 +67,8 @@ function App() {
         {message && (
           <div id='message' className='text-emerald-500 p-2 text-center mt-2'>{message}</div>
         )}
-      </form>
+        <img className='capyAppear' src={capybara}/>
+      </form>  
       <pre>
         <code>
           {JSON.stringify(
@@ -80,7 +81,6 @@ function App() {
           )}
         </code>
       </pre>
-      <img className='capyAppear' src={capybara}/>
     </>
   )
 }
