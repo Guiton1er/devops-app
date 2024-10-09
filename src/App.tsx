@@ -86,7 +86,7 @@ function App() {
           onChange={(e) => setDate(e.target.value)}
         />
 
-        <button type='submit' className='bg-teal-200 p-2 rounded-md '>
+        <button type='submit' className='bg-teal-200 p-2 rounded-md hover:bg-teal-400 active:bg-teal-600 '>
           Add Task
         </button>
         
