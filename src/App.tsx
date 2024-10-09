@@ -98,7 +98,7 @@ function App() {
       )}
 
       <Calendar
-        className='mt-12 w-10/12 shadow-lg border-2 p-6 flex flex-col mx-auto rounded-md bg-white' 
+        className='mt-12 w-10/12 shadow-lg border-2 p-6 flex flex-col mx-auto rounded-md bg-white'
         localizer={localizer}
         events={tasks.map((t) => ({
           title: t.title,
