@@ -68,7 +68,7 @@ function App() {
 
   return (
     <>
-      <h1 className='text-teal-800 font-black text-center p-2 text-2xl font-mono mt-3'>
+      <h1 className='text-teal-800 font-black text-center p-2 text-2xl font-mono mt-3 '>
         Todo List
       </h1>
 
@@ -76,7 +76,7 @@ function App() {
         <input 
           type="text" 
           className='border p-2 rounded-md' 
-          placeholder='Titre de la tâche'
+          placeholder='Task title'
           onChange={(e) => setTitle(e.target.value)}
         />
 
