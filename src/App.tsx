@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import capybara from './assets/capybara.png'
 import './App.css'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
