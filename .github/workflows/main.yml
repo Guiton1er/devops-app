@@ -15,4 +15,8 @@ jobs:
         with:
           build: npm run build
           start: npm run dev
-          
+
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: juezhbfezybf
