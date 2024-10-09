@@ -44,7 +44,7 @@ function App() {
     console.log("date : ", date);
 
     if (!title || !date) {
-      setMessage("Veuillez remplir tous mes champs !");
+      setMessage("Please fill the formulary !");
       setTimeout(() => {
         setMessage(""); 
       }, 3000);
@@ -60,7 +60,7 @@ function App() {
     setDate("");
 
     // Afficher un message de succès
-    setMessage("Tâche ajoutée avec succès !");
+    setMessage("Task added successfully !");
     setTimeout(() => {
       setMessage(""); 
     }, 3000);
@@ -68,11 +68,11 @@ function App() {
 
   return (
     <>
-      <h1 className='text-teal-800 text-center p-2 text-2xl font-mono font-black mt-3'>
+      <h1 className='text-teal-800 font-black text-center p-2 text-2xl font-mono mt-3'>
         Todo List
       </h1>
 
-      <form className='flex flex-col space-y-2 max-w-80 border p-6 shadow-lg mx-auto mt-2 rounded-md makeItAppear bg-white' onSubmit={handleSubmit}>
+      <form className='flex flex-col space-y-2 max-w-80 border-2 p-6 shadow-lg mx-auto mt-2 rounded-md makeItAppear bg-white' onSubmit={handleSubmit}>
         <input 
           type="text" 
           className='border p-2 rounded-md' 
@@ -87,7 +87,7 @@ function App() {
         />
 
         <button type='submit' className='bg-teal-200 p-2 rounded-md '>
-          Ajouter
+          Add Task
         </button>
         
         <img className='capyAppear' src={capybara}/>
@@ -98,7 +98,7 @@ function App() {
       )}
 
       <Calendar
-        className='mt-2 w-10/12 shadow-lg border p-6 flex flex-col mx-auto rounded-md bg-white' 
+        className='mt-12 w-10/12 shadow-lg border-2 p-6 flex flex-col mx-auto rounded-md bg-white' 
         localizer={localizer}
         events={tasks.map((t) => ({
           title: t.title,
