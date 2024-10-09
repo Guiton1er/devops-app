@@ -86,7 +86,7 @@ function App() {
           onChange={(e) => setDate(e.target.value)}
         />
 
-        <button type='submit' className='bg-teal-200 p-2 rounded-md hover:bg-teal-400 hover:text-white active:bg-teal-600 '>
+        <button type='submit' className='bg-teal-300 p-2 rounded-md hover:bg-teal-400 text-white active:bg-teal-600 '>
           Add Task
         </button>
         
@@ -108,7 +108,7 @@ function App() {
         }))}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 500 }}
+        style={{ height: 600 }}
       />
 
     </>
