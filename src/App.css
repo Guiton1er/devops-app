@@ -2,7 +2,7 @@
   transition: 2000ms;
   position: absolute;
   z-index: -1;
-  left: 0px;
+  right: 0px
 }
 
 img.capyAppear {
@@ -11,11 +11,11 @@ img.capyAppear {
 
 .makeItAppear {
   position: relative;
-  z-index: initial;
+  z-index: inherit;
 }
 
 .makeItAppear:hover .capyAppear {
   transition: 2000ms;
   transform: rotate(20deg);
-  left: 100%;
+  right: -170px;
 }

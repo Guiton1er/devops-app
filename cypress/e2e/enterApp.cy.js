@@ -1,12 +1,13 @@
+const TASKS_STORAGE_KEYS = "tasks_db";
 const taskTest = {
   title: 'This is a test !',
-  date: '2000-01-01',
+  date: new Date().toISOString().split("T")[0],
 }
 const successMessageTest = 'Tâche ajoutée avec succès !';
 const errorMessageTest = 'Veuillez remplir tous mes champs !';
 
 describe('template spec', () => {
-  it('passes', () => {
+  it('Try a valid form', () => {
     cy.visit('http://localhost:5173');
 
     cy.get('input[type=text]').type(taskTest.title);
@@ -21,6 +22,8 @@ describe('template spec', () => {
       expect(tasks[0]).to.deep.equal(taskTest);
     });
 
+    cy.contains(taskTest.title);
+
     cy.clearAllLocalStorage();
   }),
 
@@ -34,8 +37,9 @@ describe('template spec', () => {
     cy.contains(errorMessageTest);
 
     cy.getAllLocalStorage().then((ls) => {
-      expect(ls[Cypress.config().baseUrl]).to.be.undefined;
+      expect(ls[Cypress.config().baseUrl][TASKS_STORAGE_KEYS]).to.be.equal("[]");
     });
+    cy.clearAllLocalStorage();
   }),
 
   it('Try without title', () => {
@@ -48,7 +52,16 @@ describe('template spec', () => {
     cy.contains(errorMessageTest);
 
     cy.getAllLocalStorage().then((ls) => {
-      expect(ls[Cypress.config().baseUrl]).to.be.undefined;
+      expect(ls[Cypress.config().baseUrl][TASKS_STORAGE_KEYS]).to.be.equal("[]");
     });
+    cy.clearAllLocalStorage();
+  })
+
+  it('Try previous are displed in calendar', () => {
+    cy.visit('http://localhost:5173');
+
+    localStorage.setItem(TASKS_STORAGE_KEYS, JSON.stringify([taskTest]));
+
+    cy.contains(taskTest.title);
   })
 })
