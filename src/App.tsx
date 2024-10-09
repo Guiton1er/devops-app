@@ -1,6 +1,10 @@
-import { useState } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import capybara from './assets/capybara.png'
 import './App.css'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import { Calendar, momentLocalizer } from 'react-big-calendar'
+import moment from 'moment'
+import 'moment-timezone'
 
 type Task = {
   title: string;
@@ -9,10 +13,29 @@ type Task = {
 
 const TASKS_STORAGE_KEY = "tasks_db";
 
+moment.tz.setDefault('France/Paris')
+const localizer = momentLocalizer(moment);
+
 function App() {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [message, setMessage] = useState("");
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasksLoaded, setTasksLoaded] = useState(false);
+
+  useEffect(() => {
+    const localStorageTasks: Task[] = JSON.parse(
+      localStorage.getItem(TASKS_STORAGE_KEY) || "[]"
+    );
+    setTasks(localStorageTasks);
+    setTasksLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (tasksLoaded) {
+      localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
+    }
+  }, [tasks, tasksLoaded]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,9 +52,8 @@ function App() {
     }
 
     // TODO : enregister la tâche dans le local storage 
-    const tasks: Task[] = JSON.parse(localStorage.getItem(TASKS_STORAGE_KEY) || "[]");
-    tasks.push({ title, date });
-    localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
+    const newTask = { title, date };
+    setTasks((prevTasks) => [...prevTasks, newTask]);
 
     // Réinitialiser les champs
     setTitle("");
@@ -49,6 +71,7 @@ function App() {
       <h1 className='text-teal-800 text-center p-2 text-2xl font-mono font-black mt-3'>
         Todo List
       </h1>
+
       <form className='flex flex-col space-y-2 max-w-80 border p-6 shadow-lg mx-auto mt-2 rounded-md makeItAppear bg-white' onSubmit={handleSubmit}>
         <input 
           type="text" 
@@ -56,31 +79,38 @@ function App() {
           placeholder='Titre de la tâche'
           onChange={(e) => setTitle(e.target.value)}
         />
+
         <input 
           type="date" 
           className='border p-2 rounded-md'
           onChange={(e) => setDate(e.target.value)}
         />
+
         <button type='submit' className='bg-teal-200 p-2 rounded-md '>
           Ajouter
         </button>
-        {message && (
-          <div id='message' className='text-emerald-500 p-2 text-center mt-2'>{message}</div>
-        )}
+        
         <img className='capyAppear' src={capybara}/>
-      </form>  
-      <pre>
-        <code>
-          {JSON.stringify(
-            {
-              title,
-              date,
-            },
-            null,
-            2
-          )}
-        </code>
-      </pre>
+      </form>
+
+      {message && (
+        <div id='message' className='text-emerald-500 p-2 text-center mt-2'>{message}</div>
+      )}
+
+      <Calendar
+        className='mt-2 w-10/12 shadow-lg border p-6 flex flex-col mx-auto rounded-md bg-white' 
+        localizer={localizer}
+        events={tasks.map((t) => ({
+          title: t.title,
+          start: t.date,
+          end: t.date,
+          allDay: true,
+        }))}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 500 }}
+      />
+
     </>
   )
 }
