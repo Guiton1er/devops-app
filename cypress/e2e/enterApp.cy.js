@@ -3,8 +3,8 @@ const taskTest = {
   title: 'This is a test !',
   date: new Date().toISOString().split("T")[0],
 }
-const successMessageTest = 'Tâche ajoutée avec succès !';
-const errorMessageTest = 'Veuillez remplir tous mes champs !';
+const successMessageTest = "Task added successfully !";
+const errorMessageTest = "Please fill the formulary !";
 
 describe('template spec', () => {
   it('Try a valid form', () => {
