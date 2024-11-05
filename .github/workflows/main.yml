@@ -34,5 +34,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.AZURE_URL }}/devops-app:latest
+          tags: ${{ secrets.AZURE_URL }}/devops-app:${{github.sha}}
           file: Dockerfile
