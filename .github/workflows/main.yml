@@ -6,6 +6,11 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+
+    defaults:
+       run:
+         shell: bash
+    
     steps:
       -
         name: Checkout
@@ -25,8 +30,9 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
       -
         name: Build and push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: guiton1er/devops-app:latest
+          tags: ${{ secrets.AZURE_URL }}/devops-app:latest
+          file: Dockerfile
