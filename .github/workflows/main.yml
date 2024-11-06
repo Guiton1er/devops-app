@@ -51,7 +51,7 @@ jobs:
         uses: 'azure/aci-deploy@v1'
         with:
           resoure-group: devops
-          dns-name-label: devops-app
+          dns-name-label: guiton1er-devops-app
           image:  ${{ secrets.AZURE_URL }}/devops-app:${{github.sha}}
           cpu: 1
           memory: 0.5
